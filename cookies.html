@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Cookies – Full Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    .dark {
+      background-color: #222;
+      color: white;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>JavaScript Cookies practice</h2>
+
+  <button onclick="saveName()">Save Name</button>
+  <button onclick="readName()">Read Name</button>
+  <button onclick="deleteName()">Delete Name</button>
+  <button onclick="toggleTheme()">Toggle Theme</button>
+
+  <p id="output"></p>
+
+  <script>
+    /* 
+       SET COOKIE
+    */
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+    }
+
+   
+   //    GET COOKIE
+  
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        let c = cookies[i].trim();
+        if (c.indexOf(nameEQ) === 0) {
+          return decodeURIComponent(c.substring(nameEQ.length));
+        }
+      }
+      return null;
+    }
+
+    //   DELETE COOKIE
+    
+    function deleteCookie(name) {
+      document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    }
+
+    
+    //   EXAMPLES
+  
+    function saveName() {
+      setCookie("username", "Biniam", 7);
+      document.getElementById("output").innerText = "Name saved in cookie.";
+    }
+
+    function readName() {
+      const name = getCookie("username");
+      document.getElementById("output").innerText =
+        name ? "Stored Name: " + name : "No cookie found.";
+    }
+
+    function deleteName() {
+      deleteCookie("username");
+      document.getElementById("output").innerText = "Cookie deleted.";
+    }
+
+    
+    //   THEME USING COOKIE
+    
+    function toggleTheme() {
+      const currentTheme = getCookie("theme");
+
+      if (currentTheme === "dark") {
+        document.body.classList.remove("dark");
+        setCookie("theme", "light", 7);
+      } else {
+        document.body.classList.add("dark");
+        setCookie("theme", "dark", 7);
+      }
+    }
+
+    // Load theme on page load
+    window.onload = function () {
+      if (getCookie("theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+    };
+  </script>
+
+</body>
+</html>

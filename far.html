@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Page 3</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.menu {
+  background: #333;
+  overflow: hidden;
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu li {
+  float: left;
+}
+.menu li a {
+  color:black;
+  padding: 14px 20px;
+  text-decoration: none;
+  display: block;
+}
+.menu li a:hover {
+  background: red;
+}
+
+/* Layout */
+.top-left, .top-center, .top-right {
+  float: left;
+  height: 50vh;
+}
+.top-left {
+  width: 25%;
+  background:red;
+}
+.top-center {
+  width: 50%;
+  background: #d9dbbc;
+}
+.top-right {
+  width: 25%;
+  background: #fcddbc;
+}
+
+.bottom {
+  clear: both;
+  width: 100%;
+  height: 25vh;
+  background: #ef959c;
+}
+</style>
+</head>
+<body>
+
+<div class="menu">
+  <ul>
+    <li><a href="page1.html">Page 1</a></li>
+    <li><a href="page2.html">Page 2</a></li>
+    <li><a href="page3.html">Page 3</a></li>
+  </ul>
+</div>
+
+<div class="top-left"><h2>25%</h2></div>
+<div class="top-center"><h2>50%</h2></div>
+<div class="top-right"><h2>25%</h2></div>
+
+
+
+<div class="bottom"><h2>Bottom 25% height</h2></div>
+
+</body>
+</html>
